@@ -1,0 +1,25 @@
+%h1 Listing users
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Email
+      %th
+      %th
+      %th
+
+  %tbody
+    / Variables that start with the @ sign, called instance variables, are automatically available in the views
+    / In this case, the index view iterates through the @users list and outputs a line of HTML for each one
+    - @users.each do |user|
+      %tr
+        %td= user.name
+        %td= user.email
+        %td= link_to 'Show', user
+        %td= link_to 'Edit', edit_user_path(user)
+        %td= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New User', new_user_path
